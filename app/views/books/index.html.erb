@@ -1,0 +1,23 @@
+<%= render "users/user_info", user: @user%>
+<%= render "books/new", book: @book%>
+
+<div class="title"><h1>Books</h1></div>
+
+  <table class="table">
+    <tr class="book-table">
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+    
+    <% @books.each do |book| %>
+    <tr class="contents">
+        <th><%= link_to root_path do %>
+          <%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
+          <% end %></th>
+        <th class="content"><%= link_to "#{book.title}", "/" %></th>
+        <th class="content"><%= book.body %></th>
+        <th class="link">
+        </th>
+    </tr>
+    <% end %>
+  </table>

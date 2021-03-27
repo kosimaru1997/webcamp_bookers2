@@ -1,0 +1,9 @@
+   <div class="title"><h1>Book detail</h1></div>
+    <tr class="contents">
+        <th class="content"><%= @book.title %></th>
+        <th class="content"><%= @book.body %></th>
+        <th class="link">
+          <%= link_to("Edit", "/") %>
+          <%= link_to("Destroy", "/")  %>
+        </th>
+    </tr>
