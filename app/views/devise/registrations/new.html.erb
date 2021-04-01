@@ -1,7 +1,22 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <% if resource.errors.any? %>
+    <div class="alert">
+      <div class="alert-message">
+        <% if resource.errors.count >= 2 %>
+         <h3><%= resource.errors.count %> errors prohibited this book from being saved:<h3>
+        <% else %>
+        <h3><%= resource.errors.count %> error prohibited this book from being saved:<h3>
+        <% end %>
+      </div>
+        <ul>
+            <% resource.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :name %><br />
