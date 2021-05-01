@@ -28,6 +28,8 @@ class BooksController < ApplicationController
   def show
     @book_new = Book.new
     @book = Book.find(params[:id])
+    @book_comments = @book.book_comments
+    @book_comment = BookComment.new
   end
 
   def edit
@@ -57,7 +59,7 @@ class BooksController < ApplicationController
   end
   
   def baria_user
-    unless Book.find(params[:id]).user.id == current_user.id
+    unless Book.find(params[:id]).user == current_user
       redirect_to books_path
     end
   end

@@ -2,13 +2,13 @@
 
 <div class="container">
   <div class="row">
- 
-<div class="col-md-3">     
+
+<div class="col-md-3">
   <%= render "users/user_info", user: @book.user%>
   <%= render "books/new", book: @book_new%>
 </div>
- 
-<div class="col-md-8 offset-md-1"> 
+
+<div class="col-md-8 offset-md-1">
   <div class="title"><h1>Book detail</h1></div>
     <table class="table">
         <tr class="contents">
@@ -19,6 +19,7 @@
             </th>
             <th class="content"><%= @book.title %></th>
             <th class="content"><%= @book.body %></th>
+            <th class="content">コメント数：<%= @book.book_comments.count %></th>
             <% if @book.user.id == current_user.id %>
             <th class="link">
               <%= link_to "Edit", edit_book_path(@book.id) %>
@@ -27,8 +28,19 @@
             </th>
         </tr>
     </table>
+
+    <div class="comments">
+      <p>コメント一覧</p>
+      <%= render @book_comments %>
+    </div>
+    <div class="new-comment">
+      <%= form_with(model: [@book, @book_comment], local: true) do |f| %>
+        <%= f.text_area :comment, size: "70x4", placeholder: "コメントをここに" %>
+        <%= f.submit "送信する" %>
+      <% end %>
+    </div>
 </div>
-    
+
   </div>
 </div>
 
