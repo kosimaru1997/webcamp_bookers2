@@ -24,6 +24,8 @@
             <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
           </th>
           <th class="content"><%= user.name %></th>
+          <th>フォロー数：<%= user.following.count %></th>
+          <th>フォロワー数：<%= user.followers.count %></th>
           <% unless current_user == user %>
             <% if current_user.following?(user) %>
               <th class="content">
