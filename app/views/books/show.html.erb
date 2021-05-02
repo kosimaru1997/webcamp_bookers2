@@ -46,7 +46,9 @@
 
     <div class="comments">
       <p>コメント一覧</p>
-      <%= render @book_comments %>
+      <table class="table">
+          <%= render @book_comments %>
+      </table>
     </div>
     <div class="new-comment">
       <%= form_with(model: [@book, @book_comment], local: true) do |f| %>
