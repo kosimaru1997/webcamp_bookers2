@@ -1,0 +1,10 @@
+<h2>Results index</h2>
+
+  <!--検索対象モデルがUserの時 -->
+  <% if @range == "User" %>
+    <table class="table"><%= render @users %></table>
+  <% else %>
+    <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
+    <table class="table"><%= render @books %></table>
+  <% end %>
+</table>

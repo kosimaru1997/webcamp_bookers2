@@ -1,0 +1,24 @@
+        </tr>  
+          <th class="content">
+            <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
+          </th>
+          <th class="content"><%= user.name %></th>
+          <th>フォロー数：<%= user.following.count %></th>
+          <th>フォロワー数：<%= user.followers.count %></th>
+          <% unless current_user == user %>
+            <% if current_user.following?(user) %>
+              <th class="content">
+                <%= link_to "フォロー外す", user_relationship_path(user.id, user.id), method: :delete %>
+              </th>
+            <% else %>
+              <th class="content">
+                <%= link_to "フォローする", user_relationships_path(user.id), method: :post %>
+              </th>
+            <% end %>
+          <% else %>
+            <th></th>
+          <% end %>
+          <th class="link">
+            <%= link_to "Show", user_path(user.id) %>
+          </th>
+        </tr>

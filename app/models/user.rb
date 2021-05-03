@@ -23,16 +23,32 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-  def follow(other_user)
-    following << other_user
-  end
+  # def follow(other_user)
+  #   following << other_user
+  # end
 
-  def unfollow(other_user)
-    active_relationships.find_by(followed_id).destroy
-  end
+  # def unfollow(other_user)
+  #   active_relationships.find_by(followed_id).destroy
+  # end
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  #検索
+  def self.looks(search, word)
+    case search
+      when "perfect_match"
+        @user = User.where("nam LIKE?", "#{word}")
+      when "forward_match"
+        @user = User.where("name LIKE?", "#{word}%")
+      when
+        @user = User.where("name LIKE?", "%#{word}")
+      when "partial_match"
+        @user = User.where("name LIKE?", "%#{word}%")
+      else
+        @user = User.all
+    end
   end
 
 end
