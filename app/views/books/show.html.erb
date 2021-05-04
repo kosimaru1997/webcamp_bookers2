@@ -17,20 +17,8 @@
             </th>
             <th class="content"><%= @book.title %></th>
             <th class="content"><%= @book.body %></th>
-            <th class="content">
-              <% if @book.favorited_by?(@book) %>
-                <p>
-                  <%= link_to book_favorites_path(@book), method: :delete do %>
-                    ♥<%= @book.favorites.count %> いいね
-                  <% end %>
-                </p>
-                <% else %>
-                <p>
-                  <%= link_to book_favorites_path(@book), method: :post do %>
-                    ♡<%= @book.favorites.count %> いいね
-                  <% end %>
-                </p>
-              <% end %>
+            <th class="content" id="favorites_<%= @book.id %>">
+              <%= render partial: 'favorites/favorite', locals:{ book: @book} %>
             </th>
             <th class="content">コメント数：<%= @book.book_comments.count %></th>
             <% if @book.user.id == current_user.id %>
@@ -44,15 +32,12 @@
 
     <div class="comments">
       <p>コメント一覧</p>
-      <table class="table">
-          <%= render @book_comments %>
+      <table class="table" id="book_comments">
+        <%= render @book_comments %>
       </table>
     </div>
-    <div class="new-comment">
-      <%= form_with(model: [@book, @book_comment], local: true) do |f| %>
-        <%= f.text_area :comment, size: "70x4", placeholder: "コメントをここに" %>
-        <%= f.submit "送信する" %>
-      <% end %>
+    <div id="new-comment">
+      <%= render "new_comment", {book: @book, book_comment: @book_comment} %>
     </div>
 </div>
 
