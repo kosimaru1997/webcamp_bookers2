@@ -68,11 +68,13 @@
         </div>
       </div>
       
+      <% if user_signed_in? %>
         <div class="row">
           <div class="mx-auto">　
             <%= render "searches/search" %>
           </div>
         </div>
+      <% end %>  
         
     </header>
       <%= flash[:notice] %>

@@ -5,7 +5,7 @@
     <th class="content"><%= link_to "#{book.title}", book_path(book.id) %></th>
     <th class="content"><%= book.body %></th>
     <th class="content">
-        <% if book.favorited_by?(book) %>
+        <% if book.favorited_by?(current_user) %>
           <p>
             <%= link_to book_favorites_path(book.id), method: :delete do %>
               ♥<%= book.favorites.count %> いいね
