@@ -1,5 +1,3 @@
-<main>
-
 <div class="container">
   <div class="row">
 
@@ -20,7 +18,7 @@
             <th class="content"><%= @book.title %></th>
             <th class="content"><%= @book.body %></th>
             <th class="content">
-              <% if @book.favorited_by?(current_user) %>
+              <% if @book.favorited_by?(@book) %>
                 <p>
                   <%= link_to book_favorites_path(@book), method: :delete do %>
                     ♥<%= @book.favorites.count %> いいね
@@ -60,5 +58,3 @@
 
   </div>
 </div>
-
-</main>

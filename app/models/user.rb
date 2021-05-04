@@ -39,7 +39,7 @@ class User < ApplicationRecord
   def self.looks(search, word)
     case search
       when "perfect_match"
-        @user = User.where("nam LIKE?", "#{word}")
+        @user = User.where("name LIKE?", "#{word}")
       when "forward_match"
         @user = User.where("name LIKE?", "#{word}%")
       when
