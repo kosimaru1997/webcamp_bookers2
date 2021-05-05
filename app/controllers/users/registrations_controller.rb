@@ -9,10 +9,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+
+  def create
+    super
+    @user = resource
+    UserMailer.welcome_mail(@user).deliver_now if @user.valid?
+  end
 
   # GET /resource/edit
   # def edit
