@@ -18,16 +18,7 @@
         <th>Opinion</th>
       </tr>
       
-      <% @books.each do |book| %>
-      <tr class="contents">
-          <th><%= link_to user_path(book.user) do %>
-            <%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
-            <%end%></th>
-          <th class="content"><%= link_to "#{book.title}", book_path(book.id) %></th>
-          <th class="content"><%= book.body %></th>
-          <th class="content">コメント数:<%= book.book_comments.count %></th>
-      </tr>
-      <% end %>
+       <%= render @books %>
     </table>
 </div>
   
