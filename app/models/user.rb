@@ -20,6 +20,9 @@ class User < ApplicationRecord
 
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  
+  has_many :user_rooms
+  has_many :chats
 
   attachment :profile_image
 
@@ -46,18 +49,16 @@ class User < ApplicationRecord
         @user = User.where("name LIKE?", "%#{word}")
       when "partial_match"
         @user = User.where("name LIKE?", "%#{word}%")
-      else
-        @user = User.all
     end
   end
-  
+
   include JpPrefecture
   jp_prefecture :prefecture_code
-  
+
   def prefecture_name
     JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
   end
-  
+
   def prefecture_name=(prefecture_name)
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end

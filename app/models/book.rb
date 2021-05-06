@@ -21,8 +21,6 @@ class Book < ApplicationRecord
         @book = Book.where("title LIKE?", "%#{word}")
       when "partial_match"
         @book = Book.where("title LIKE?", "%#{word}%")
-      else
-        @book = Book.all
     end
   end
 
