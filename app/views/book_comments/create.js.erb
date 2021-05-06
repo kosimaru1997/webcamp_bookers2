@@ -1,2 +1,2 @@
-$('#book_comments').html("<%= j(render @book_comments) %>");
+$('#book_comments').append("<%= j(render @book_comments) %>");
 $('#new-comment').html("<%= j(render "books/new_comment", {book: @book, book_comment: @book_comment}) %>");
