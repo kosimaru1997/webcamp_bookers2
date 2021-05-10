@@ -25,7 +25,7 @@ class BookCommentsController < ApplicationController
    end
 
   def baria_user
-    unless BookComment.find_by(id: params[:id], book_id: params[:book_id]).user == current_user
+    unless BookComment.find_by(id: params[:id]).user == current_user
       redirect_to books_path
     end
   end

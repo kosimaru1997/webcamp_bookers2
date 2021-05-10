@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   end
 
   def baria_user
-    unless User.find(params[:id]).id == current_user.id
+    unless User.find(params[:id]) == current_user
       redirect_to user_path(current_user.id)
     end
   end
